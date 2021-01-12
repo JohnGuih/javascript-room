@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula - Javascript</title>
+</head>
+<body>
+    <script>
+        //estudo sobre Arrays
+        //var cor=new Array();
+        var cor=[];
+
+        /*
+        cor.push("Preto");
+        cor.push("Branco");
+        cor.push("Vermelho");
+        cor.push("Azul");
+        cor.push("Amarelo");
+        cor.push("Marrom");
+        cor.push("Rosa");
+        */
+
+        cor[0]="Preto";
+        cor[1]="Branco";
+        cor[2]="Vermelho";
+        cor[3]="Azul";
+        cor[4]="Amarelo";
+        cor[5]="Marrom";
+        cor[6]="Rosa";
+
+        // Metodos da classe array
+
+        // push: adiciona dados no ultimo espaço de memoria disponivel
+        cor.push("Verde");
+
+        // unshift: adiciona dados no primeiro espaço de memoria
+        cor.unshift("Roxo");
+
+        // pop: Oposto do push, remove o ultimo dado da array
+        cor.pop();
+
+        // shift: Oposto do unshift, remove o primeiro dado da array
+        cor.shift();
+
+        // splice: Metodo complexo de remoção de dados, remove x quantidades de dados a partir de uma posição y
+        cor.shift(2, 1);
+
+        document.write(cor[8]);
+
+    </script>
+</body>
+</html>
