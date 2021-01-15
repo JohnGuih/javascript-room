@@ -44,6 +44,17 @@
         document.write(red+"<br>");
         document.write(blue+"<br><br>");
 
+        //let: só vale no escopo em que ela foi declarada
+        variavelTeste = "abacaxi"
+        document.write(variavelTeste + "<br>");
+        for(loop = 0; loop < 1; loop++){
+            let variavelTeste = "teste";
+            document.write(variavelTeste + "<br>");
+        }
+        //a variavel não vai aparecer fora do for
+        document.write(variavelTeste + "<br>");
+
+
     </script>
 </body>
 </html>
