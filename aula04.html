@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula - Javascript</title>
+</head>
+<body>
+    <script>
+        //try, catch, finally: Função que, respectivamente, procura erros, realiza uma ação caso tenha um erro, e realiza um outra função caso não haja erro
+        var num;//Maximo 10
+        try{
+            num=prompt("Digite um valor");
+            if(num>10){
+                throw new Error("Valor inválido, o valor máximo é 10");
+            }
+        }catch(e){
+            console.log("ERRO: " + e.message);
+            num = 10;
+        }finally{
+            document.write("Valor: "+num);
+        }
+    </script>
+</body>
+</html>
