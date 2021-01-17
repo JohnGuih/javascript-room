@@ -1,0 +1,23 @@
+{
+  "name": "javascript-room",
+  "version": "1.0.0",
+  "description": "Projeto com finalidade de estudos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JohnGuih/javascript-room.git"
+  },
+  "keywords": [],
+  "author": "João Guilherme Pessanha Alves",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JohnGuih/javascript-room/issues"
+  },
+  "homepage": "https://github.com/JohnGuih/javascript-room#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
