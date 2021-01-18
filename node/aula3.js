@@ -3,15 +3,15 @@ const app = express();
 
 
 app.get("/", function(req, res){
-    res.send("Seja bem vindo ao meu site! :^)")
+    res.sendFile(__dirname + "/html/index.html");
 });
 
 app.get("/sobre", function(req, res){
-    res.send("Minha pagina sobre");
+    res.sendFile(__dirname + "/html/sobre.html");
 });
 
 app.get("/blog", function(req, res){
-    res.send("Bem-vindo ao meu blog")
+    res.sendFile(__dirname + "/html/blog.html");
 });
 
 //So pode aver uma .send em cada função
