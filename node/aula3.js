@@ -16,7 +16,7 @@ app.get("/blog", function(req, res){
 
 //So pode aver uma .send em cada função
 app.get('/ola/:nome', function(req, res){
-    res.send("<h1>Ola " + req.params.nome + "</h1>");
+    res.send("<h1>Bem-vindo senhor " + req.params.nome + "</h1>");
 });
 
 
