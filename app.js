@@ -16,6 +16,9 @@ const admin = require('./routes/admin')
     // Mongoose
 
 // Rotas
+    app.get('/', (req, res)=>{
+        res.send('rota principal')
+    })
     app.use('/admin', admin)
 // Outros
 const PORT = 8081
