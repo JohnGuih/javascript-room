@@ -150,7 +150,11 @@ router.post("/postagens/nova", (req,res)=>{
     }
 
     if(erros.length > 0){
-        res.render("admin/addpostagem", {erros: erros})
+        Categoria.find().sort({name:'asc'}).lean(true).then((categoria)=>{
+            res.render("admin/addpostagem", {categoria: categoria, erros: erros})
+        }).catch((err)=>{
+            req.flash("error-msg", "Erro ao carregar formulario: "+err)
+        })
     }else{
         const novaPostagem = {
             titulo: req.body.titulo,
@@ -165,6 +169,71 @@ router.post("/postagens/nova", (req,res)=>{
             res.redirect("/admin/postagens")
         }).catch((err)=>{
             req.flash("error_msg", "Houve um erro durante o salvamento da postagem")
+            res.redirect("/admin/postagens")
+        })
+    }
+})
+
+router.get("/postagens/edit/:id", (req, res)=>{
+    Postagem.findOne({_id: req.params.id}).lean().then((postagem)=>{
+        Categoria.find().lean().then((categoria)=>{
+            res.render("admin/editpostagens", {categoria:categoria, postagem:postagem})
+        }).catch((err)=>{
+            req.flash("error_msg", "Houve um erro ao listar as categorias")
+            res.redirect("/admin/postagens")
+        })
+    }).catch((err)=>{
+        req.flash("error_msg", "Houve um erro ao carregar o formulario")
+        res.redirect("/admin/postagens")
+    })
+})
+
+router.post("/postagem/edit", (req, res)=>{
+    var erros = []
+
+    if(!req.body.titulo || typeof req.body.titulo == undefined || req.body.titulo == null){
+        erros.push({texto: "Titulo inválido"})
+    }
+    
+    if(!req.body.slug || typeof req.body.slug == undefined || req.body.slug == null){
+        erros.push({texto: "Slug inválido"})
+    }
+
+    if(!req.body.descricao || typeof req.body.descricao == undefined || req.body.descricao == null){
+        erros.push({texto: "Descrição inválida"})
+    }
+
+    if(!req.body.conteudo || typeof req.body.conteudo == undefined || req.body.conteudo == null){
+        erros.push({texto: "Conteudo inválido"})
+    }
+
+    if(req.body.categoria == 0){
+        erros.push({texto: "Categoria inválida"})
+    }
+
+    if(erros.length > 0){
+        Categoria.find().sort({name:'asc'}).lean(true).then((categoria)=>{
+            res.render("admin/addpostagem", {categoria: categoria, erros: erros})
+        }).catch((err)=>{
+            req.flash("error-msg", "Erro ao carregar formulario: "+err)
+        })
+    }else{
+        Postagem.findOne({_id: req.body.id}).then((postagem)=>{
+            postagem.titulo = req.body.titulo
+            postagem.slug = req.body.slug
+            postagem.descricao = req.body.descricao
+            postagem.conteudo = req.body.conteudo
+            postagem.categoria = req.body.categoria
+
+            postagem.save().then(()=>{
+                req.flash("success_msg", "Edição salva com sucesso")
+                res.redirect("/admin/postagens")
+            }).catch((err)=>{
+                req.flash("error_msg", "Houve um arro interno")
+                res.redirect("/admin/postagem")
+            })
+        }).catch((err)=>{
+            req.flash("error_msg", "Houve um erro ao salvar"+err)
             res.redirect("/admin/postagens")
         })
     }
